@@ -1,0 +1,58 @@
+# Task 4 - File Handling Mini Project
+
+def add_note():
+    note = input("Enter your note: ")
+
+    with open("notes.txt", "a") as file:
+        file.write(note + "\n")
+
+    print("Note added successfully!")
+
+
+def view_notes():
+    try:
+        with open("notes.txt", "r") as file:
+            notes = file.read()
+
+        if notes:
+            print("\n===== YOUR NOTES =====")
+            print(notes)
+        else:
+            print("No notes available.")
+
+    except FileNotFoundError:
+        print("No notes found. Please add a note first.")
+
+
+def clear_notes():
+    with open("notes.txt", "w") as file:
+        file.write("")
+
+    print("All notes cleared!")
+
+
+# Main program
+while True:
+    print("\n===== FILE HANDLING MINI PROJECT =====")
+    print("1. Add Note")
+    print("2. View Notes")
+    print("3. Clear Notes")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        add_note()
+
+    elif choice == "2":
+        view_notes()
+
+    elif choice == "3":
+        clear_notes()
+
+    elif choice == "4":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
